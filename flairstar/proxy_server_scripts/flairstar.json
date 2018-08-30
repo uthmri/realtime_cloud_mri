@@ -1,0 +1,33 @@
+{
+	"name": "grape job",
+	"appId": "grape-0.1",
+	"batchQueue": "default",
+	"executionSystem": "jetstream",
+	"maxRunTime": "12:00:00",
+	"memoryPerNode": "2GB",
+	"nodeCount": 1,
+	"processorsPerNode": 1,
+	"archive": false,
+	"archivePath": null,
+	"inputs": {
+		"inputGRP": "agave://jetstream-storage/vol1/agave/pipelines/flairstar_v01.grp"
+	},
+	"parameters": {
+		"inputS": 1,
+		"inputR": 1
+	},
+	"notifications": [{
+			"url": "http://requestbin.agaveapi.co/?job_id=${JOB_ID}&status=${JOB_STATUS}",
+			"event": "*",
+			"persistent": true
+		}, {
+			"url": "my_email@example.com",
+			"event": "FINISHED",
+			"persistent": false
+		}, {
+			"url": "my_email@example.com",
+			"event": "FAILED",
+			"persistent": false
+		}
+	]
+}
